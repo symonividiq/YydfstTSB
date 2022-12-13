@@ -14,7 +14,6 @@ jobs:
       MNEMONIC_TEST_ACCOUNT: ${{ secrets.MNEMONIC_TEST_ACCOUNT }}
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/cache@v2
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -27,7 +26,6 @@ jobs:
     - run: 'git config --global --replace-all url."https://github.com/".insteadOf ssh://git@github.com/'
     - run: npm ci --legacy-peer-deps
     - run: npm run build --if-present
-    - run: npm run lint
 
   test:
     runs-on: ubuntu-latest
